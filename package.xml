@@ -28,7 +28,6 @@
    <dir name="doc">
     <dir name="Horde">
      <dir name="ManageSieve">
-      <file name="LICENSE" role="doc" />
       <file name="UPGRADING" role="doc" />
      </dir> <!-- /doc/Horde/ManageSieve -->
     </dir> <!-- /doc/Horde -->
@@ -60,6 +59,7 @@
      </dir> <!-- /test/Horde/ManageSieve -->
     </dir> <!-- /test/Horde -->
    </dir> <!-- /test -->
+   <file name="LICENSE" role="doc" />
   </dir> <!-- / -->
  </contents>
  <dependencies>
@@ -102,7 +102,6 @@
  </dependencies>
  <phprelease>
   <filelist>
-   <install as="LICENSE" name="doc/Horde/ManageSieve/LICENSE" />
    <install as="UPGRADING" name="doc/Horde/ManageSieve/UPGRADING" />
    <install as="Horde/ManageSieve.php" name="lib/Horde/ManageSieve.php" />
    <install as="Horde/ManageSieve/Exception.php" name="lib/Horde/ManageSieve/Exception.php" />
@@ -111,6 +110,7 @@
    <install as="Horde/ManageSieve/Exception/NotConnected.php" name="lib/Horde/ManageSieve/Exception/NotConnected.php" />
    <install as="Horde/ManageSieve/Exception/NotDisconnected.php" name="lib/Horde/ManageSieve/Exception/NotDisconnected.php" />
    <install as="Horde/ManageSieve/Exception/Referral.php" name="lib/Horde/ManageSieve/Exception/Referral.php" />
+   <install as="LICENSE" name="LICENSE" />
    <install as="Horde/ManageSieve/AllTests.php" name="test/Horde/ManageSieve/AllTests.php" />
    <install as="Horde/ManageSieve/bootstrap.php" name="test/Horde/ManageSieve/bootstrap.php" />
    <install as="Horde/ManageSieve/conf.php.dist" name="test/Horde/ManageSieve/conf.php.dist" />
