@@ -28,7 +28,7 @@
    <dir name="doc">
     <dir name="Horde">
      <dir name="ManageSieve">
-      <file name="UPGRADING" role="doc" />
+      <file name="UPGRADING.rst" role="doc" />
      </dir> <!-- /doc/Horde/ManageSieve -->
     </dir> <!-- /doc/Horde -->
    </dir> <!-- /doc -->
@@ -102,7 +102,7 @@
  </dependencies>
  <phprelease>
   <filelist>
-   <install as="UPGRADING" name="doc/Horde/ManageSieve/UPGRADING" />
+   <install as="UPGRADING.rst" name="doc/Horde/ManageSieve/UPGRADING.rst" />
    <install as="Horde/ManageSieve.php" name="lib/Horde/ManageSieve.php" />
    <install as="Horde/ManageSieve/Exception.php" name="lib/Horde/ManageSieve/Exception.php" />
    <install as="Horde/ManageSieve/Exception/ConnectionFailed.php" name="lib/Horde/ManageSieve/Exception/ConnectionFailed.php" />
