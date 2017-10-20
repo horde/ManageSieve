@@ -10,7 +10,7 @@
   <email>jan@horde.org</email>
   <active>yes</active>
  </lead>
- <date>2017-10-17</date>
+ <date>2017-10-20</date>
  <version>
   <release>1.0.3</release>
   <api>1.0.0</api>
@@ -55,7 +55,6 @@
       <file name="conf.php.dist" role="test" />
       <file name="largescript.siv" role="test" />
       <file name="ManageSieveTest.php" role="test" />
-      <file name="phpunit.xml" role="test" />
      </dir> <!-- /test/Horde/ManageSieve -->
     </dir> <!-- /test/Horde -->
    </dir> <!-- /test -->
@@ -116,7 +115,6 @@
    <install as="Horde/ManageSieve/conf.php.dist" name="test/Horde/ManageSieve/conf.php.dist" />
    <install as="Horde/ManageSieve/largescript.siv" name="test/Horde/ManageSieve/largescript.siv" />
    <install as="Horde/ManageSieve/ManageSieveTest.php" name="test/Horde/ManageSieve/ManageSieveTest.php" />
-   <install as="Horde/ManageSieve/phpunit.xml" name="test/Horde/ManageSieve/phpunit.xml" />
   </filelist>
  </phprelease>
  <changelog>
@@ -184,7 +182,7 @@
    <stability>
     <release>stable</release>
     <api>stable</api></stability>
-   <date>2017-10-17</date>
+   <date>2017-10-20</date>
    <license uri="http://www.horde.org/licenses/bsd">BSD-2-Clause</license>
    <notes>
 * 
