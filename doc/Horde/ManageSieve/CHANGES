@@ -1,0 +1,37 @@
+----------
+v1.0.3-git
+----------
+
+
+------
+v1.0.2
+------
+
+[jan] Fix loading of Auth_SASL class (Ralf Becker
+      <RalfBecker@outdoor-training.de>).
+
+
+------
+v1.0.1
+------
+
+[jan] Fix usage of 'tlsv1' connection setting (Ralf Becker
+      <RalfBecker@outdoor-training.de>).
+[jan] Fix setting authentication credentials from login() (Ralf Becker
+      <RalfBecker@outdoor-training.de>).
+[jan] Fix throwing exceptions (Ralf Becker <RalfBecker@outdoor-training.de>).
+[jan] Mark PHP 7 as supported.
+
+
+------
+v1.0.0
+------
+
+Initial stable release.
+
+
+------------
+v1.0.0alpha1
+------------
+
+Initial release.
