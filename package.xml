@@ -57,7 +57,6 @@
       <file name="conf.php.dist" role="test" />
       <file name="largescript.siv" role="test" />
       <file name="ManageSieveTest.php" role="test" />
-      <file name="phpunit.xml" role="test" />
      </dir> <!-- /test/Horde/ManageSieve -->
     </dir> <!-- /test/Horde -->
    </dir> <!-- /test -->
@@ -120,8 +119,7 @@
    <install as="Horde/ManageSieve/conf.php.dist" name="test/Horde/ManageSieve/conf.php.dist" />
    <install as="Horde/ManageSieve/largescript.siv" name="test/Horde/ManageSieve/largescript.siv" />
    <install as="Horde/ManageSieve/ManageSieveTest.php" name="test/Horde/ManageSieve/ManageSieveTest.php" />
-   <install as="Horde/ManageSieve/phpunit.xml" name="test/Horde/ManageSieve/phpunit.xml" />
-  </filelist>
+   </filelist>
  </phprelease>
  <changelog>
   <release>
