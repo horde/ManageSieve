@@ -2,7 +2,7 @@
 id: ManageSieve
 name: ManageSieve
 full: ManageSieve client library
-description: This library implements the ManageSieve protocol (RFC 5804).
+description: A library that implements the ManageSieve protocol (RFC 5804).
 list: dev
 type: library
 authors:
