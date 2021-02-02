@@ -273,7 +273,7 @@ class ManageSieve
             $this->_params['port'] = $port;
         }
         if (isset($context)) {
-            $this->_params['context'] = array_merge_recursive(
+            $this->_params['context'] = array_replace_recursive(
                 $this->_params['context'],
                 $context
             );
