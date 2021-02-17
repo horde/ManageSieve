@@ -8,7 +8,8 @@
   license:
     identifier: BSD-2-Clause
     uri: http://www.horde.org/licenses/bsd
-  notes:
+  notes: |
+    [jan] Fix passing 'context' parameter to connect() method (Daniel Kesselberg <mail@danielkesselberg.de>, PR #1).
 1.0.2:
   api: 1.0.0
   state:
