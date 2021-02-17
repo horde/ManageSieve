@@ -1,6 +1,9 @@
-----------
-v1.0.3-git
-----------
+------
+v1.0.3
+------
+
+[jan] Fix passing 'context' parameter to connect() method (Daniel Kesselberg
+      <mail@danielkesselberg.de>, PR #1).
 
 
 ------
