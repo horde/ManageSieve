@@ -13,11 +13,11 @@ authors:
     active: true
     role: lead
 version:
-  release: 1.0.3
-  api: 1.0.0
+  release: 2.0.0alpha1
+  api: 2.0.0alpha1
 state:
-  release: stable
-  api: stable
+  release: alpha
+  api: alpha
 license:
   identifier: BSD-2-Clause
   uri: http://www.horde.org/licenses/bsd
