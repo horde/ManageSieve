@@ -32,9 +32,6 @@
     "autoload": {
         "psr-0": {
             "Horde_ManageSieve": "lib/"
-        },
-        "psr-4": {
-            "Horde\\ManageSieve\\": "src/"
         }
     }
 }
