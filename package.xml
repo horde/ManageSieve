@@ -65,42 +65,12 @@
  <dependencies>
   <required>
    <php>
-    <min>5.4.0</min>
+    <min>7.0.0</min>
    </php>
    <pearinstaller>
     <min>1.7.0</min>
    </pearinstaller>
-   <package>
-    <name>Horde_Exception</name>
-    <channel>pear.horde.org</channel>
-    <min>2.0.0</min>
-    <max>3.0.0alpha1</max>
-    <exclude>3.0.0alpha1</exclude>
-   </package>
-   <package>
-    <name>Horde_Socket_Client</name>
-    <channel>pear.horde.org</channel>
-    <min>2.0.0</min>
-    <max>3.0.0alpha1</max>
-    <exclude>3.0.0alpha1</exclude>
-   </package>
-   <package>
-    <name>Horde_Util</name>
-    <channel>pear.horde.org</channel>
-    <min>2.0.0</min>
-    <max>3.0.0alpha1</max>
-    <exclude>3.0.0alpha1</exclude>
-   </package>
   </required>
-  <optional>
-   <package>
-    <name>Auth_SASL</name>
-    <channel>pear.php.net</channel>
-    <min>1.0.0</min>
-    <max>2.0.0alpha1</max>
-    <exclude>2.0.0alpha1</exclude>
-   </package>
-  </optional>
  </dependencies>
  <phprelease>
   <filelist>
@@ -140,10 +110,12 @@
   <release>
    <version>
     <release>1.0.0</release>
-    <api>1.0.0</api></version>
+    <api>1.0.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2015-11-15</date>
    <license uri="http://www.horde.org/licenses/bsd">BSD-2-Clause</license>
    <notes>
@@ -153,10 +125,12 @@
   <release>
    <version>
     <release>1.0.1</release>
-    <api>1.0.0</api></version>
+    <api>1.0.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2016-02-01</date>
    <license uri="http://www.horde.org/licenses/bsd">BSD-2-Clause</license>
    <notes>
@@ -169,10 +143,12 @@
   <release>
    <version>
     <release>1.0.2</release>
-    <api>1.0.0</api></version>
+    <api>1.0.0</api>
+   </version>
    <stability>
     <release>stable</release>
-    <api>stable</api></stability>
+    <api>stable</api>
+   </stability>
    <date>2016-07-12</date>
    <license uri="http://www.horde.org/licenses/bsd">BSD-2-Clause</license>
    <notes>
@@ -182,11 +158,13 @@
   <release>
    <version>
     <release>2.0.0alpha1</release>
-    <api>2.0.0alpha1</api></version>
+    <api>2.0.0alpha1</api>
+   </version>
    <stability>
     <release>alpha</release>
-    <api>alpha</api></stability>
-   <date>2021-02-24</date>
+    <api>alpha</api>
+   </stability>
+   <date>2017-10-20</date>
    <license uri="http://www.horde.org/licenses/bsd">BSD-2-Clause</license>
    <notes>
 * 

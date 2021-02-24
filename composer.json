@@ -17,21 +17,17 @@
         {
             "type": "composer",
             "url": "https://horde-satis.maintaina.com/"
-        },
-        {
-            "url": "https://pear.php.net",
-            "type": "pear"
         }
     ],
     "require": {
         "horde/horde-installer-plugin": "*",
-        "php": "^5.4",
-        "horde/exception": "^2",
-        "horde/socket_client": "^2",
-        "horde/util": "^2"
+        "php": "^7",
+        "horde/exception": "^3",
+        "horde/socket_client": "^3",
+        "horde/util": "^3"
     },
     "suggest": {
-        "pear-pear.php.net/Auth_SASL": "^1"
+        "pear/auth_sasl": "^1.1"
     },
     "autoload": {
         "psr-0": {
