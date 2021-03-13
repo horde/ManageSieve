@@ -11,26 +11,21 @@
             "role": "lead"
         }
     ],
-    "version": "1.0.4",
-    "time": "2021-02-17",
+    "time": "2021-03-13",
     "repositories": [
         {
-            "type": "pear",
-            "url": "https://pear.horde.org"
+            "type": "composer",
+            "url": "https://horde-satis.maintaina.com/"
         }
     ],
     "require": {
-        "php": "^5.4",
-        "pear-pear.horde.org/Horde_Exception": "^2",
-        "pear-pear.horde.org/Horde_Socket_Client": "^2",
-        "pear-pear.horde.org/Horde_Util": "^2"
+        "php": "^7",
+        "horde/exception": "^3",
+        "horde/socket_client": "^3",
+        "horde/util": "^3"
     },
     "suggest": {
-        "pear-pear.php.net/Auth_SASL": "^1"
-    },
-    "replace": {
-        "pear-pear.horde.org/Horde_ManageSieve": "1.*",
-        "pear-horde/Horde_ManageSieve": "1.*"
+        "pear/auth_sasl": "^1.1"
     },
     "autoload": {
         "psr-0": {

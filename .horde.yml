@@ -13,21 +13,21 @@ authors:
     active: true
     role: lead
 version:
-  release: 1.0.4
-  api: 1.0.0
+  release: 2.0.0alpha3
+  api: 2.0.0alpha1
 state:
-  release: stable
-  api: stable
+  release: alpha
+  api: alpha
 license:
   identifier: BSD-2-Clause
   uri: http://www.horde.org/licenses/bsd
 dependencies:
   required:
-    php: ^5.4
-    pear:
-      pear.horde.org/Horde_Exception: ^2
-      pear.horde.org/Horde_Socket_Client: ^2
-      pear.horde.org/Horde_Util: ^2
+    php: ^7
+    composer:
+      horde/exception: ^3
+      horde/socket_client: ^3
+      horde/util: ^3
   optional:
-    pear:
-      pear.php.net/Auth_SASL: ^1
+    composer:
+      pear/auth_sasl: ^1.1
