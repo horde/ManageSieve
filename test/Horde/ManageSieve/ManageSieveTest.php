@@ -11,8 +11,8 @@
  * @author    Jan Schneider <jan@horde.org>
  * @license   http://www.horde.org/licenses/bsd BSD
  */
-
-use \Horde\ManageSieve, \Horde\ManageSieve\Exception;
+namespace Horde\ManageSieve;
+use Horde_Test_Case;
 
 /**
  * PHPUnit test case for Horde\ManageSieve.
@@ -47,7 +47,7 @@ class ManageSieveTest extends Horde_Test_Case
      */
     protected $scripts;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->config = self::getConfig('MANAGESIEVE_TEST_CONFIG');
         if (!$this->config || empty($this->config['managesieve'])) {
@@ -67,7 +67,7 @@ class ManageSieveTest extends Horde_Test_Case
             'test script4' => file_get_contents(dirname(__FILE__) . '/largescript.siv'));
     }
     
-    protected function tearDown()
+    protected function tearDown(): void
     {
         // Delete the instance.
         unset($this->fixture);
