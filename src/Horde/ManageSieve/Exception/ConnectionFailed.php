@@ -12,10 +12,10 @@
  */
 
 namespace Horde\ManageSieve\Exception;
-use Horde\ManageSieve;
+use Horde\ManageSieve\Exception as ManageSieveException;
 
 /**
- * Exception thrown if the user should be authenticated but isn't.
+ * Exception thrown if connecting to the server failed.
  *
  * @author    Jan Schneider <jan@horde.org>
  * @category  Horde
@@ -23,15 +23,15 @@ use Horde\ManageSieve;
  * @license   http://www.horde.org/licenses/bsd BSD
  * @package   ManageSieve
  */
-class NotAuthenticated extends ManageSieve\Exception
+class ConnectionFailed extends ManageSieveException
 {
     /**
      * Exception constructor.
      *
-     * @param mixed $message  The exception message, or an Exception object.
+     * @param Exception $e  An Exception object.
      */
-    public function __construct($message = 'Not currently in AUTHENTICATED state')
+    public function __construct(\Exception $e)
     {
-        parent::__construct($message);
+        parent::__construct('Failed to connect, server said: ' . $e->getMessage());
     }
 }

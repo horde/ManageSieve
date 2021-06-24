@@ -12,10 +12,10 @@
  */
 
 namespace Horde\ManageSieve\Exception;
-use Horde\ManageSieve;
+use Horde\ManageSieve\Exception as ManageSieveException;
 
 /**
- * Exception thrown if the referring to a different server failed.
+ * Exception thrown if the server should be connected but isn't.
  *
  * @author    Jan Schneider <jan@horde.org>
  * @category  Horde
@@ -23,6 +23,15 @@ use Horde\ManageSieve;
  * @license   http://www.horde.org/licenses/bsd BSD
  * @package   ManageSieve
  */
-class Referral extends ManageSieve\Exception
+class NotConnected extends ManageSieveException
 {
+    /**
+     * Exception constructor.
+     *
+     * @param mixed $message  The exception message, or an Exception object.
+     */
+    public function __construct($message = 'Not currently connected')
+    {
+        parent::__construct($message);
+    }
 }

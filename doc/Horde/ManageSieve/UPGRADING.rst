@@ -10,6 +10,12 @@
 
 This lists the API changes between releases of the package.
 
+Upgrading from ManageSieve H5-master
+====================================
+
+  - The code moved from lib/ to src/
+  - The Horde\ManageSieve class is now Horde\ManageSieve\Client to ease PSR-4 autoloading
+
 
 Upgrading from Net_Sieve
 ========================

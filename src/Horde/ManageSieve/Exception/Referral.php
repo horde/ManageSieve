@@ -12,10 +12,10 @@
  */
 
 namespace Horde\ManageSieve\Exception;
-use Horde\ManageSieve;
+use Horde\ManageSieve\Exception as ManageSieveException;
 
 /**
- * Exception thrown if connecting to the server failed.
+ * Exception thrown if the referring to a different server failed.
  *
  * @author    Jan Schneider <jan@horde.org>
  * @category  Horde
@@ -23,15 +23,6 @@ use Horde\ManageSieve;
  * @license   http://www.horde.org/licenses/bsd BSD
  * @package   ManageSieve
  */
-class ConnectionFailed extends ManageSieve\Exception
+class Referral extends ManageSieveException
 {
-    /**
-     * Exception constructor.
-     *
-     * @param Exception $e  An Exception object.
-     */
-    public function __construct(\Exception $e)
-    {
-        parent::__construct('Failed to connect, server said: ' . $e->getMessage());
-    }
 }

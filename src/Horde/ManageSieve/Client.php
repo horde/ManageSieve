@@ -15,10 +15,9 @@
  * @license   http://www.horde.org/licenses/bsd BSD
  */
 
-namespace Horde;
-use Auth_SASL;
-use Horde\Socket\Client;
-use Horde\ManageSieve\Exception;
+namespace Horde\ManageSieve;
+use \Auth_SASL;
+use \Horde\Socket\Client;
 
 /**
  * This class implements the ManageSieve protocol (RFC 5804).
@@ -35,7 +34,7 @@ use Horde\ManageSieve\Exception;
  * @link      http://tools.ietf.org/html/rfc5804 RFC 5804 A Protocol for
  *            Remotely Managing Sieve Scripts
  */
-class ManageSieve
+class Client
 {
     /**
      * Client is disconnected.
