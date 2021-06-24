@@ -12,10 +12,10 @@
  */
 
 namespace Horde\ManageSieve\Exception;
-use Horde\ManageSieve;
+use Horde\ManageSieve\Exception as ManageSieveException;
 
 /**
- * Exception thrown if the server should be connected but isn't.
+ * Exception thrown if the server should be disconnected but isn't.
  *
  * @author    Jan Schneider <jan@horde.org>
  * @category  Horde
@@ -23,14 +23,14 @@ use Horde\ManageSieve;
  * @license   http://www.horde.org/licenses/bsd BSD
  * @package   ManageSieve
  */
-class NotConnected extends ManageSieve\Exception
+class NotDisconnected extends ManageSieveException
 {
     /**
      * Exception constructor.
      *
      * @param mixed $message  The exception message, or an Exception object.
      */
-    public function __construct($message = 'Not currently connected')
+    public function __construct($message = 'Not currently in DISCONNECTED state')
     {
         parent::__construct($message);
     }
