@@ -17,7 +17,8 @@
 
 namespace Horde\ManageSieve;
 use \Auth_SASL;
-use \Horde\Socket\Client;
+use \Horde\Socket\Client as SocketClient;
+use \Horde\Socket\Client\Exception as SocketClientException;
 
 /**
  * This class implements the ManageSieve protocol (RFC 5804).
@@ -286,14 +287,14 @@ class Client
         }
 
         try {
-            $this->_sock = new Client(
+            $this->_sock = new SocketClient(
                 $this->_params['host'],
                 $this->_params['port'],
                 $this->_params['timeout'],
                 $this->_params['secure'],
                 $this->_params['context']
             );
-        } catch (Client\Exception $e) {
+        } catch (SocketClientException $e) {
             throw new Exception\ConnectionFailed($e);
         }
 
