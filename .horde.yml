@@ -23,7 +23,7 @@ license:
   uri: http://www.horde.org/licenses/bsd
 dependencies:
   required:
-    php: ^7
+    php: ^7.4 || ^8
     composer:
       horde/exception: ^3
       horde/socket_client: ^3
