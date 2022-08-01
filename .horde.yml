@@ -13,7 +13,7 @@ authors:
     active: true
     role: lead
 version:
-  release: 2.0.0alpha5
+  release: 2.0.0alpha6
   api: 2.0.0alpha1
 state:
   release: alpha
