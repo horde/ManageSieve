@@ -32,5 +32,10 @@
         "psr-4": {
             "Horde\\ManageSieve\\": "src/"
         }
+    },
+    "config": {
+        "allow-plugins": {
+            "horde/horde-installer-plugin": true
+        }
     }
 }
