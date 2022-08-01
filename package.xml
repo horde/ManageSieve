@@ -10,7 +10,7 @@
   <email>jan@horde.org</email>
   <active>yes</active>
  </lead>
- <date>2021-03-13</date>
+ <date>2022-08-01</date>
  <version>
   <release>2.0.0alpha5</release>
   <api>2.0.0alpha1</api>
@@ -21,10 +21,18 @@
  </stability>
  <license uri="http://www.horde.org/licenses/bsd">BSD-2-Clause</license>
  <notes>
-* 
+* |+
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
+   <dir name=".github">
+    <dir name="workflows">
+     <file name="ci.yml" role="php" />
+     <file name="phpdoc.yml" role="php" />
+     <file name="release.yml" role="php" />
+     <file name="update-satis.yml" role="php" />
+    </dir> <!-- /.github/workflows -->
+   </dir> <!-- /.github -->
    <dir name="doc">
     <dir name="Horde">
      <dir name="ManageSieve">
@@ -33,21 +41,17 @@
      </dir> <!-- /doc/Horde/ManageSieve -->
     </dir> <!-- /doc/Horde -->
    </dir> <!-- /doc -->
-   <dir name="lib">
-    <dir name="Horde">
-     <dir name="ManageSieve">
-      <dir name="Exception">
-       <file name="ConnectionFailed.php" role="php" />
-       <file name="NotAuthenticated.php" role="php" />
-       <file name="NotConnected.php" role="php" />
-       <file name="NotDisconnected.php" role="php" />
-       <file name="Referral.php" role="php" />
-      </dir> <!-- /lib/Horde/ManageSieve/Exception -->
-      <file name="Exception.php" role="php" />
-     </dir> <!-- /lib/Horde/ManageSieve -->
-     <file name="ManageSieve.php" role="php" />
-    </dir> <!-- /lib/Horde -->
-   </dir> <!-- /lib -->
+   <dir name="src">
+    <dir name="Exception">
+     <file name="ConnectionFailed.php" role="php" />
+     <file name="NotAuthenticated.php" role="php" />
+     <file name="NotConnected.php" role="php" />
+     <file name="NotDisconnected.php" role="php" />
+     <file name="Referral.php" role="php" />
+    </dir> <!-- /src/Exception -->
+    <file name="Client.php" role="php" />
+    <file name="Exception.php" role="php" />
+   </dir> <!-- /src -->
    <dir name="test">
     <dir name="Horde">
      <dir name="ManageSieve">
@@ -65,7 +69,7 @@
  <dependencies>
   <required>
    <php>
-    <min>7.0.0</min>
+    <min>7.4.0</min>
    </php>
    <pearinstaller>
     <min>1.7.0</min>
@@ -74,16 +78,20 @@
  </dependencies>
  <phprelease>
   <filelist>
+   <install as="workflows/ci.yml" name=".github/workflows/ci.yml" />
+   <install as="workflows/phpdoc.yml" name=".github/workflows/phpdoc.yml" />
+   <install as="workflows/release.yml" name=".github/workflows/release.yml" />
+   <install as="workflows/update-satis.yml" name=".github/workflows/update-satis.yml" />
    <install as="CHANGES" name="doc/Horde/ManageSieve/CHANGES" />
    <install as="UPGRADING.rst" name="doc/Horde/ManageSieve/UPGRADING.rst" />
-   <install as="Horde/ManageSieve.php" name="lib/Horde/ManageSieve.php" />
-   <install as="Horde/ManageSieve/Exception.php" name="lib/Horde/ManageSieve/Exception.php" />
-   <install as="Horde/ManageSieve/Exception/ConnectionFailed.php" name="lib/Horde/ManageSieve/Exception/ConnectionFailed.php" />
-   <install as="Horde/ManageSieve/Exception/NotAuthenticated.php" name="lib/Horde/ManageSieve/Exception/NotAuthenticated.php" />
-   <install as="Horde/ManageSieve/Exception/NotConnected.php" name="lib/Horde/ManageSieve/Exception/NotConnected.php" />
-   <install as="Horde/ManageSieve/Exception/NotDisconnected.php" name="lib/Horde/ManageSieve/Exception/NotDisconnected.php" />
-   <install as="Horde/ManageSieve/Exception/Referral.php" name="lib/Horde/ManageSieve/Exception/Referral.php" />
    <install as="LICENSE" name="LICENSE" />
+   <install as="Client.php" name="src/Client.php" />
+   <install as="Exception.php" name="src/Exception.php" />
+   <install as="Exception/ConnectionFailed.php" name="src/Exception/ConnectionFailed.php" />
+   <install as="Exception/NotAuthenticated.php" name="src/Exception/NotAuthenticated.php" />
+   <install as="Exception/NotConnected.php" name="src/Exception/NotConnected.php" />
+   <install as="Exception/NotDisconnected.php" name="src/Exception/NotDisconnected.php" />
+   <install as="Exception/Referral.php" name="src/Exception/Referral.php" />
    <install as="Horde/ManageSieve/AllTests.php" name="test/Horde/ManageSieve/AllTests.php" />
    <install as="Horde/ManageSieve/bootstrap.php" name="test/Horde/ManageSieve/bootstrap.php" />
    <install as="Horde/ManageSieve/conf.php.dist" name="test/Horde/ManageSieve/conf.php.dist" />
@@ -92,14 +100,6 @@
   </filelist>
  </phprelease>
  <changelog>
- 
- 
- 
- 
- 
- 
- 
- 
   <release>
    <version>
     <release>1.0.0alpha1</release>
@@ -226,7 +226,7 @@
   <release>
    <version>
     <release>2.0.0alpha5</release>
-    <api>2.0.0</api>
+    <api>2.0.0alpha1</api>
    </version>
    <stability>
     <release>alpha</release>
@@ -235,7 +235,7 @@
    <date>2021-03-13</date>
    <license uri="http://www.horde.org/licenses/bsd">BSD-2-Clause</license>
    <notes>
-* 
+* |+
    </notes>
   </release>
  </changelog>

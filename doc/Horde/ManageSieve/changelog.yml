@@ -4,12 +4,11 @@
   state:
     release: alpha
     api: alpha
-  date: 2021-03-13
+  date: 2022-08-01
   license:
     identifier: BSD-2-Clause
     uri: http://www.horde.org/licenses/bsd
   notes: |+
-    
 2.0.0alpha4:
   api: 2.0.0
   state:

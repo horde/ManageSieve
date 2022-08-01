@@ -1,5 +1,4 @@
 {
-    "minimum-stability": "dev",
     "name": "horde/managesieve",
     "description": "ManageSieve client library",
     "type": "library",
@@ -12,11 +11,11 @@
             "role": "lead"
         }
     ],
-    "time": "2021-03-13",
+    "time": "2022-08-01",
     "repositories": [
         {
             "type": "composer",
-            "url": "https://horde-satis.maintaina.com/"
+            "url": "https://horde-satis.maintaina.com"
         }
     ],
     "require": {
@@ -25,12 +24,18 @@
         "horde/socket_client": "^3 || dev-FRAMEWORK_6_0",
         "horde/util": "^3 || dev-FRAMEWORK_6_0"
     },
+    "require-dev": {},
     "suggest": {
         "pear/auth_sasl": "^1.1"
     },
     "autoload": {
         "psr-4": {
             "Horde\\ManageSieve\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Horde\\ManageSieve\\Test\\": "test/"
         }
     },
     "config": {
