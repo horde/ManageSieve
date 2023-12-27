@@ -14,23 +14,17 @@
     "version": "1.0.4",
     "time": "2021-02-17",
     "repositories": [
-        {
-            "type": "pear",
-            "url": "https://pear.horde.org"
-        }
     ],
     "require": {
         "php": "^5.4",
-        "pear-pear.horde.org/Horde_Exception": "^2",
-        "pear-pear.horde.org/Horde_Socket_Client": "^2",
-        "pear-pear.horde.org/Horde_Util": "^2"
+        "horde/exception": "^2",
+        "horde/socket_client": "^2",
+        "horde/util": "^2"
     },
     "suggest": {
-        "pear-pear.php.net/Auth_SASL": "^1"
+        "pear/auth_sasl": "^1"
     },
     "replace": {
-        "pear-pear.horde.org/Horde_ManageSieve": "1.*",
-        "pear-horde/Horde_ManageSieve": "1.*"
     },
     "autoload": {
         "psr-0": {
