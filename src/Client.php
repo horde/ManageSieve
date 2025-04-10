@@ -145,6 +145,11 @@ class Client
     protected $_maxReferralCount = 15;
 
     /**
+     * @var null|array
+     */
+    private $_capability;
+
+    /**
      * Constructor.
      *
      * If username and password are provided connects to the server and logs
