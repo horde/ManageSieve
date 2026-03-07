@@ -9,7 +9,6 @@
     identifier: BSD-2-Clause
     uri: http://www.horde.org/licenses/bsd
   notes: |+
-    
 2.0.0alpha5:
   api: 2.0.0
   state:
@@ -40,6 +39,19 @@
     identifier: BSD-2-Clause
     uri: http://www.horde.org/licenses/bsd
   notes: |
+2.0.0-alpha7:
+  api: 2.0.0-alpha7
+  state:
+    release: alpha
+    api: alpha
+  date: 2026-03-07
+  license:
+    identifier: BSD-2-Clause
+    uri: https://spdx.org/licenses/BSD-2-Clause.html
+  notes: |-
+    Merge pull request #2 from nextcloud/fix/dynamic-client-capability-property
+    fix: Declare otherwise dynamic property Client::_capability
+    Development mode for ManageSieve-2.0.0alpha6
 1.0.4:
   api: 1.0.0
   state:
@@ -86,17 +98,6 @@
     [jan] Fix setting authentication credentials from login() (Ralf Becker <RalfBecker@outdoor-training.de>).
     [jan] Fix throwing exceptions (Ralf Becker <RalfBecker@outdoor-training.de>).
     [jan] Mark PHP 7 as supported.
-1.0.0:
-  api: 1.0.0
-  state:
-    release: stable
-    api: stable
-  date: 2015-11-15
-  license:
-    identifier: BSD-2-Clause
-    uri: http://www.horde.org/licenses/bsd
-  notes: |
-    Initial stable release.
 1.0.0alpha1:
   api: 1.0.0alpha1
   state:
@@ -108,3 +109,14 @@
     uri: http://www.horde.org/licenses/bsd
   notes: |
     Initial release.
+1.0.0:
+  api: 1.0.0
+  state:
+    release: stable
+    api: stable
+  date: 2015-11-15
+  license:
+    identifier: BSD-2-Clause
+    uri: http://www.horde.org/licenses/bsd
+  notes: |
+    Initial stable release.
