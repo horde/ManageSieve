@@ -12,6 +12,7 @@
  * @author    Damian Fernandez Sosa <damlists@cnba.uba.ar>
  * @author    Anish Mistry <amistry@am-productions.biz>
  * @author    Jan Schneider <jan@horde.org>
+ * @author    Jean Charles Delépine <delepine@u-picardie.fr>
  * @license   http://www.horde.org/licenses/bsd BSD
  */
 
@@ -83,6 +84,11 @@ class Client
     const AUTH_EXTERNAL = 'EXTERNAL';
 
     /**
+    * XOAUTH2 authentication.
+    */
+    const AUTH_XOAUTH2 = 'XOAUTH2';
+
+    /**
      * The authentication methods this class supports.
      *
      * Can be overwritten if having problems with certain methods.
@@ -95,6 +101,7 @@ class Client
         self::AUTH_EXTERNAL,
         self::AUTH_PLAIN,
         self::AUTH_LOGIN,
+        self::AUTH_XOAUTH2,
     );
 
     /**
@@ -161,6 +168,9 @@ class Client
      *   - port: Port of server (DEFAULT: 4190).
      *   - user: Login username (optional).
      *   - password: Login password (optional).
+     *   - xoauth2_token: (mixed) If set, will authenticate via the XOAUTH2
+     *                    mechanism (if available) with this token. Either a
+     *                    string or a Horde\ManageSieve\Password object.
      *   - authmethod: Type of login to perform (see $supportedAuthMethods)
      *                 (DEFAULT: AUTH_AUTOMATIC).
      *   - euser: Effective user. If authenticating as an administrator, login
@@ -196,6 +206,7 @@ class Client
                 'secure'     => true,
                 'timeout'    => 5,
                 'user'       => '',
+                'xoauth2_token' => null,
             ),
             $params
         );
@@ -216,9 +227,32 @@ class Client
         }
 
         if (strlen($this->_params['user']) &&
-            strlen($this->_params['password'])) {
+            (strlen((string)$this->_params['password']) || $this->getParam('xoauth2_token'))) {
             $this->_handleConnectAndLogin();
         }
+    }
+
+    /**
+     * Get a connection parameter.
+     *
+     * @param string $key  The parameter key.
+     *
+     * @return mixed  The parameter value, or null if it doesn't exist.
+     */
+    public function getParam($key)
+    {
+        switch ($key) {
+        case 'xoauth2_token':
+            if (isset($this->_params[$key]) &&
+                ($this->_params[$key] instanceof Password)) {
+                return $this->_params[$key]->getPassword();
+            }
+            break;
+        }
+
+        return isset($this->_params[$key])
+            ? $this->_params[$key]
+            : null;
     }
 
     /**
@@ -612,6 +646,9 @@ class Client
         case self::AUTH_EXTERNAL:
             $this->_authEXTERNAL($uid, $pwd, $euser);
             break;
+        case self::AUTH_XOAUTH2:
+            $this->_authXOAUTH2($uid, $this->getParam('xoauth2_token'), $euser);
+            break;
         default :
             throw new Exception(
                 $method . ' is not a supported authentication method'
@@ -735,6 +772,22 @@ class Client
             base64_encode(strlen($euser) ? $euser : $user)
         );
         return $this->_sendCmd($cmd);
+    }
+
+    /**
+     * Authenticates the user using the XOAUTH2 method.
+     *
+     * @param string $user  The userid to authenticate as.
+     * @param string $token The XOAUTH2 token (already formatted).
+     * @param string $euser The effective uid to authenticate as. Not used.
+     *
+     * @throws \Horde\ManageSieve\Exception
+     */
+    protected function _authXOAUTH2($user, $token, $euser)
+    {
+        return $this->_sendCmd(
+            sprintf('AUTHENTICATE "XOAUTH2" "%s"', $token)
+        );
     }
 
     /**
