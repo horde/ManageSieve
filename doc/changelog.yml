@@ -39,6 +39,17 @@
     identifier: BSD-2-Clause
     uri: http://www.horde.org/licenses/bsd
   notes: |
+2.0.0-alpha8:
+  api: 2.0.0-alpha8
+  state:
+    release: alpha
+    api: alpha
+  date: 2026-04-14
+  license:
+    identifier: BSD-2-Clause
+    uri: https://spdx.org/licenses/BSD-2-Clause.html
+  notes: |-
+    fix: Missing assignment in md5
 2.0.0-alpha7:
   api: 2.0.0-alpha7
   state:
