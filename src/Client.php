@@ -708,7 +708,7 @@ class Client
         }
 
         $this->_sendStringResponse(base64_encode($response));
-        $this->_doCmd('', true);
+        $result = $this->_doCmd('', true);
         if (\Horde_String::upper(substr($result, 0, 2)) == 'OK') {
             return;
         }
