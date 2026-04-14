@@ -912,11 +912,15 @@ class Client
      */
     protected function _sendCmd($cmd)
     {
-        $status = $this->_sock->getStatus();
-        if ($status['eof']) {
-            throw new Exception('Failed to write to socket: connection lost');
+        try {
+            $status = $this->_sock->getStatus();
+            if ($status['eof']) {
+                throw new Exception('Failed to write to socket: connection lost');
+            }
+            $this->_sock->write($cmd . "\r\n");
+        } catch (SocketClientException $e) {
+            throw new Exception($e);
         }
-        $this->_sock->write($cmd . "\r\n");
         $this->_debug("C: $cmd");
     }
 
@@ -937,7 +941,11 @@ class Client
      */
     protected function _recvLn()
     {
-        $lastline = rtrim($this->_sock->gets(8192));
+        try {
+            $lastline = rtrim($this->_sock->gets(8192));
+        } catch (SocketClientException $e) {
+            throw new Exception($e);
+        }
         $this->_debug("S: $lastline");
         if ($lastline === '') {
             throw new Exception('Failed to read from socket');
@@ -957,7 +965,11 @@ class Client
         $response = '';
         $response_length = 0;
         while ($response_length < $length) {
-            $response .= $this->_sock->read($length - $response_length);
+            try {
+                $response .= $this->_sock->read($length - $response_length);
+            } catch (SocketClientException $e) {
+                throw new Exception($e);
+            }
             $response_length = strlen($response);
         }
         $this->_debug('S: ' . rtrim($response));
