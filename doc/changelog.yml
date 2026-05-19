@@ -63,6 +63,17 @@
     Merge pull request #2 from nextcloud/fix/dynamic-client-capability-property
     fix: Declare otherwise dynamic property Client::_capability
     Development mode for ManageSieve-2.0.0alpha6
+2.0.0-RC1:
+  api: 2.0.0-RC1
+  state:
+    release: RC
+    api: RC
+  date: 2026-05-19
+  license:
+    identifier: BSD-2-Clause
+    uri: https://spdx.org/licenses/BSD-2-Clause.html
+  notes: |-
+    fix: Crash on failed socket read
 1.0.4:
   api: 1.0.0
   state:
