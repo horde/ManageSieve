@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Copyright 2025 Horde LLC (http://www.horde.org/)
+ * Copyright 2025-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (BSD). If you
  * did not receive this file, see http://www.horde.org/licenses/bsd.
@@ -64,8 +65,8 @@ class Xoauth2 implements \Horde\ManageSieve\Password
         // base64("user=" {User} "^Aauth=Bearer " {Access Token} "^A^A")
         // ^A represents a Control+A (\001)
         return base64_encode(
-            'user=' . $this->username . "\1" .
-            'auth=Bearer ' . $this->access_token . "\1\1"
+            'user=' . $this->username . "\1"
+            . 'auth=Bearer ' . $this->access_token . "\1\1"
         );
     }
 }

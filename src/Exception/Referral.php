@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Copyright 2015-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2015-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (BSD). If you
  * did not receive this file, see http://www.horde.org/licenses/bsd.
@@ -12,6 +13,7 @@
  */
 
 namespace Horde\ManageSieve\Exception;
+
 use Horde\ManageSieve\Exception as ManageSieveException;
 
 /**
@@ -23,6 +25,4 @@ use Horde\ManageSieve\Exception as ManageSieveException;
  * @license   http://www.horde.org/licenses/bsd BSD
  * @package   ManageSieve
  */
-class Referral extends ManageSieveException
-{
-}
+class Referral extends ManageSieveException {}

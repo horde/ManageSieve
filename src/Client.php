@@ -1,8 +1,9 @@
 <?php
+
 /**
- * Copyright 2002-2003 Richard Heyes
- * Copyright 2006-2008 Anish Mistry
- * Copyright 2009-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2002-2026 Richard Heyes
+ * Copyright 2006-2026 Anish Mistry
+ * Copyright 2009-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (BSD). If you
  * did not receive this file, see http://www.horde.org/licenses/bsd.
@@ -17,9 +18,11 @@
  */
 
 namespace Horde\ManageSieve;
-use \Auth_SASL;
-use \Horde\Socket\Client as SocketClient;
-use \Horde\Socket\Client\Exception as SocketClientException;
+
+use Auth_SASL;
+use Horde\Socket\Client as SocketClient;
+use Horde\Socket\Client\Exception as SocketClientException;
+use Horde_String;
 
 /**
  * This class implements the ManageSieve protocol (RFC 5804).
@@ -41,52 +44,52 @@ class Client
     /**
      * Client is disconnected.
      */
-    const STATE_DISCONNECTED = 1;
+    public const STATE_DISCONNECTED = 1;
 
     /**
      * Client is connected but not authenticated.
      */
-    const STATE_NON_AUTHENTICATED = 2;
+    public const STATE_NON_AUTHENTICATED = 2;
 
     /**
      * Client is authenticated.
      */
-    const STATE_AUTHENTICATED = 3;
+    public const STATE_AUTHENTICATED = 3;
 
     /**
      * Authentication with the best available method.
      */
-    const AUTH_AUTOMATIC = 0;
+    public const AUTH_AUTOMATIC = 0;
 
     /**
      * DIGEST-MD5 authentication.
      */
-    const AUTH_DIGESTMD5 = 'DIGEST-MD5';
+    public const AUTH_DIGESTMD5 = 'DIGEST-MD5';
 
     /**
      * CRAM-MD5 authentication.
      */
-    const AUTH_CRAMMD5 = 'CRAM-MD5';
+    public const AUTH_CRAMMD5 = 'CRAM-MD5';
 
     /**
      * LOGIN authentication.
      */
-    const AUTH_LOGIN = 'LOGIN';
+    public const AUTH_LOGIN = 'LOGIN';
 
     /**
      * PLAIN authentication.
      */
-    const AUTH_PLAIN = 'PLAIN';
+    public const AUTH_PLAIN = 'PLAIN';
 
     /**
      * EXTERNAL authentication.
      */
-    const AUTH_EXTERNAL = 'EXTERNAL';
+    public const AUTH_EXTERNAL = 'EXTERNAL';
 
     /**
     * XOAUTH2 authentication.
     */
-    const AUTH_XOAUTH2 = 'XOAUTH2';
+    public const AUTH_XOAUTH2 = 'XOAUTH2';
 
     /**
      * The authentication methods this class supports.
@@ -95,29 +98,29 @@ class Client
      *
      * @var array
      */
-    public $supportedAuthMethods = array(
+    public $supportedAuthMethods = [
         self::AUTH_DIGESTMD5,
         self::AUTH_CRAMMD5,
         self::AUTH_EXTERNAL,
         self::AUTH_PLAIN,
         self::AUTH_LOGIN,
         self::AUTH_XOAUTH2,
-    );
+    ];
 
     /**
      * SASL authentication methods that require Auth_SASL.
      *
      * @var array
      */
-    public $supportedSASLAuthMethods = array(
+    public $supportedSASLAuthMethods = [
         self::AUTH_DIGESTMD5,
         self::AUTH_CRAMMD5,
-    );
+    ];
 
     /**
      * The socket client.
      *
-     * @var \Horde\Socket\Client
+     * @var SocketClient
      */
     protected $_sock;
 
@@ -189,15 +192,15 @@ class Client
      *   - context: Additional options for stream_context_create().
      *   - logger: A log handler, must implement debug().
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      */
-    public function __construct($params = array())
+    public function __construct($params = [])
     {
         $this->_params = array_merge(
-            array(
+            [
                 'authmethod' => self::AUTH_AUTOMATIC,
                 'bypassauth' => false,
-                'context'    => array(),
+                'context'    => [],
                 'euser'      => null,
                 'host'       => 'localhost',
                 'logger'     => null,
@@ -207,7 +210,7 @@ class Client
                 'timeout'    => 5,
                 'user'       => '',
                 'xoauth2_token' => null,
-            ),
+            ],
             $params
         );
 
@@ -226,8 +229,8 @@ class Client
             $this->setLogger($this->_params['logger']);
         }
 
-        if (strlen($this->_params['user']) &&
-            (strlen((string)$this->_params['password']) || $this->getParam('xoauth2_token'))) {
+        if (strlen($this->_params['user'])
+            && (strlen((string) $this->_params['password']) || $this->getParam('xoauth2_token'))) {
             $this->_handleConnectAndLogin();
         }
     }
@@ -242,17 +245,16 @@ class Client
     public function getParam($key)
     {
         switch ($key) {
-        case 'xoauth2_token':
-            if (isset($this->_params[$key]) &&
-                ($this->_params[$key] instanceof Password)) {
-                return $this->_params[$key]->getPassword();
-            }
-            break;
+            case 'xoauth2_token':
+                if (isset($this->_params[$key])
+                    && ($this->_params[$key] instanceof Password)) {
+                    return $this->_params[$key]->getPassword();
+                }
+                break;
         }
 
-        return isset($this->_params[$key])
-            ? $this->_params[$key]
-            : null;
+        return $this->_params[$key]
+            ?? null;
     }
 
     /**
@@ -268,7 +270,7 @@ class Client
     /**
      * Connects to the server and logs in.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      */
     protected function _handleConnectAndLogin()
     {
@@ -299,12 +301,14 @@ class Client
      *                         stream_context_create().
      * @param boolean $secure Security layer requested. @see __construct().
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      */
     public function connect(
-        $host = null, $port = null, $context = null, $secure = null
-    )
-    {
+        $host = null,
+        $port = null,
+        $context = null,
+        $secure = null
+    ) {
         if (isset($host)) {
             $this->_params['host'] = $host;
         }
@@ -353,9 +357,9 @@ class Client
         }
 
         // Check if we can enable TLS via STARTTLS.
-        if ($this->_params['secure'] === 'tls' ||
-            ($this->_params['secure'] === true &&
-             !empty($this->_capability['starttls']))) {
+        if ($this->_params['secure'] === 'tls'
+            || ($this->_params['secure'] === true
+             && !empty($this->_capability['starttls']))) {
             $this->_doCmd('STARTTLS');
             if (!$this->_sock->startTls()) {
                 throw new Exception('Failed to establish TLS connection');
@@ -366,8 +370,8 @@ class Client
             // Unfortunately old Cyrus versions are broken and don't send a
             // CAPABILITY response, thus we would wait here forever. Parse the
             // Cyrus version and work around this broken behavior.
-            if (!preg_match('/^CYRUS TIMSIEVED V([0-9.]+)/', $this->_capability['implementation'], $matches) ||
-                version_compare($matches[1], '2.3.10', '>=')) {
+            if (!preg_match('/^CYRUS TIMSIEVED V([0-9.]+)/', $this->_capability['implementation'], $matches)
+                || version_compare($matches[1], '2.3.10', '>=')) {
                 $this->_doCmd();
             }
 
@@ -387,7 +391,7 @@ class Client
      * @param boolean $sendLogoutCMD  Whether to send LOGOUT command before
      *                                disconnecting.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      */
     public function disconnect($sendLogoutCMD = true)
     {
@@ -404,12 +408,14 @@ class Client
      * @param string $authmethod  Type of login method to use.
      * @param string $euser       Effective UID (perform on behalf of $euser).
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      */
     public function login(
-        $user = null, $password = null, $authmethod = null, $euser = null
-    )
-    {
+        $user = null,
+        $password = null,
+        $authmethod = null,
+        $euser = null
+    ) {
         if (isset($user)) {
             $this->_params['user'] = $user;
         }
@@ -468,7 +474,7 @@ class Client
      *
      * @param string $scriptname The name of the script to be set as active.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      */
     public function setActive($scriptname)
     {
@@ -480,7 +486,7 @@ class Client
      *
      * @param string $scriptname The name of the script to be retrieved.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      * @return string  The script.
     */
     public function getScript($scriptname)
@@ -495,7 +501,7 @@ class Client
      * @param string  $script     The script content.
      * @param boolean $makeactive Whether to make this the active script.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      */
     public function installScript($scriptname, $script, $makeactive = false)
     {
@@ -510,7 +516,7 @@ class Client
      *
      * @param string $scriptname Name of the script.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      */
     public function removeScript($scriptname)
     {
@@ -523,7 +529,7 @@ class Client
      * @param string  $scriptname The name of the script to mark as active.
      * @param integer $size       The size of the script.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      * @return boolean  True if there is space.
      */
     public function hasSpace($scriptname, $size)
@@ -544,7 +550,7 @@ class Client
     /**
      * Returns the list of extensions the server supports.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      * @return array  List of extensions.
      */
     public function getExtensions()
@@ -558,14 +564,14 @@ class Client
      *
      * @param string $extension The extension to check.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      * @return boolean  Whether the extension is supported.
      */
     public function hasExtension($extension)
     {
         $this->_checkConnected();
 
-        $extension = trim(\Horde_String::upper($extension));
+        $extension = trim(Horde_String::upper($extension));
         if (is_array($this->_capability['extensions'])) {
             foreach ($this->_capability['extensions'] as $ext) {
                 if ($ext == $extension) {
@@ -580,7 +586,7 @@ class Client
     /**
      * Returns the list of authentication methods the server supports.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      * @return array  List of authentication methods.
      */
     public function getAuthMechs()
@@ -594,14 +600,14 @@ class Client
      *
      * @param string $method The method to check.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      * @return boolean  Whether the method is supported.
      */
     public function hasAuthMech($method)
     {
         $this->_checkConnected();
 
-        $method = trim(\Horde_String::upper($method));
+        $method = trim(Horde_String::upper($method));
         if (is_array($this->_capability['sasl'])) {
             foreach ($this->_capability['sasl'] as $sasl) {
                 if ($sasl == $method) {
@@ -622,38 +628,40 @@ class Client
      *                           the best (strongest) available method.
      * @param string $euser      The effective uid to authenticate as.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      */
     protected function _cmdAuthenticate(
-        $uid, $pwd, $authmethod = null, $euser = ''
-    )
-    {
+        $uid,
+        $pwd,
+        $authmethod = null,
+        $euser = ''
+    ) {
         $method = $this->_getBestAuthMethod($authmethod);
 
         switch ($method) {
-        case self::AUTH_DIGESTMD5:
-            $this->_authDigestMD5($uid, $pwd, $euser);
-            return;
-        case self::AUTH_CRAMMD5:
-            $this->_authCRAMMD5($uid, $pwd, $euser);
-            break;
-        case self::AUTH_LOGIN:
-            $this->_authLOGIN($uid, $pwd, $euser);
-            break;
-        case self::AUTH_PLAIN:
-            $this->_authPLAIN($uid, $pwd, $euser);
-            break;
-        case self::AUTH_EXTERNAL:
-            $this->_authEXTERNAL($uid, $pwd, $euser);
-            break;
-        case self::AUTH_XOAUTH2:
-            $this->_authXOAUTH2($uid, $this->getParam('xoauth2_token'), $euser);
-            break;
-        default :
-            throw new Exception(
-                $method . ' is not a supported authentication method'
-            );
-            break;
+            case self::AUTH_DIGESTMD5:
+                $this->_authDigestMD5($uid, $pwd, $euser);
+                return;
+            case self::AUTH_CRAMMD5:
+                $this->_authCRAMMD5($uid, $pwd, $euser);
+                break;
+            case self::AUTH_LOGIN:
+                $this->_authLOGIN($uid, $pwd, $euser);
+                break;
+            case self::AUTH_PLAIN:
+                $this->_authPLAIN($uid, $pwd, $euser);
+                break;
+            case self::AUTH_EXTERNAL:
+                $this->_authEXTERNAL($uid, $pwd, $euser);
+                break;
+            case self::AUTH_XOAUTH2:
+                $this->_authXOAUTH2($uid, $this->getParam('xoauth2_token'), $euser);
+                break;
+            default:
+                throw new Exception(
+                    $method . ' is not a supported authentication method'
+                );
+                break;
         }
 
         $this->_doCmd();
@@ -673,7 +681,7 @@ class Client
      * @param string $pass  The password to authenticate with.
      * @param string $euser The effective uid to authenticate as.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      */
     protected function _authPLAIN($user, $pass, $euser)
     {
@@ -692,7 +700,7 @@ class Client
      * @param string $pass  The password to authenticate with.
      * @param string $euser The effective uid to authenticate as. Not used.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      */
     protected function _authLOGIN($user, $pass, $euser)
     {
@@ -708,7 +716,7 @@ class Client
      * @param string $pass  The password to authenticate with.
      * @param string $euser The effective uid to authenticate as. Not used.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      */
     protected function _authCRAMMD5($user, $pass, $euser)
     {
@@ -729,7 +737,7 @@ class Client
      * @param string $pass  The password to authenticate with.
      * @param string $euser The effective uid to authenticate as.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      */
     protected function _authDigestMD5($user, $pass, $euser)
     {
@@ -738,7 +746,12 @@ class Client
         $digest = Auth_SASL::factory('digestmd5');
         // @todo Really 'localhost'?
         $response = $digest->getResponse(
-            $user, $pass, $challenge, 'localhost', 'sieve', $euser
+            $user,
+            $pass,
+            $challenge,
+            'localhost',
+            'sieve',
+            $euser
         );
         if (is_a($response, 'PEAR_Error')) {
             throw new Exception($response);
@@ -746,7 +759,7 @@ class Client
 
         $this->_sendStringResponse(base64_encode($response));
         $result = $this->_doCmd('', true);
-        if (\Horde_String::upper(substr($result, 0, 2)) == 'OK') {
+        if (Horde_String::upper(substr($result, 0, 2)) == 'OK') {
             return;
         }
 
@@ -763,7 +776,7 @@ class Client
      * @param string $pass  The password to authenticate with.
      * @param string $euser The effective uid to authenticate as.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      */
     protected function _authEXTERNAL($user, $pass, $euser)
     {
@@ -781,7 +794,7 @@ class Client
      * @param string $token The XOAUTH2 token (already formatted).
      * @param string $euser The effective uid to authenticate as. Not used.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      */
     protected function _authXOAUTH2($user, $token, $euser)
     {
@@ -795,7 +808,7 @@ class Client
      *
      * @param string $scriptname Name of the script to delete.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      */
     protected function _cmdDeleteScript($scriptname)
     {
@@ -808,7 +821,7 @@ class Client
      *
      * @param string $scriptname Name of the script to retrieve.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      * @return string  The script.
      */
     protected function _cmdGetScript($scriptname)
@@ -826,7 +839,7 @@ class Client
      *
      * @param string $scriptname The name of the script to mark as active.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      */
     protected function _cmdSetActive($scriptname)
     {
@@ -837,7 +850,7 @@ class Client
     /**
      * Returns the list of scripts on the server.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      * @return array  An array with the list of scripts in the first element
      *                and the active script in the second element.
      */
@@ -847,7 +860,7 @@ class Client
 
         $result = $this->_doCmd('LISTSCRIPTS');
 
-        $scripts = array();
+        $scripts = [];
         $activescript = null;
         $result = explode("\r\n", $result);
         foreach ($result as $value) {
@@ -860,7 +873,7 @@ class Client
             }
         }
 
-        return array($scripts, $activescript);
+        return [$scripts, $activescript];
     }
 
     /**
@@ -869,7 +882,7 @@ class Client
      * @param string $scriptname Name of the new script.
      * @param string $scriptdata The new script.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      */
     protected function _cmdPutScript($scriptname, $scriptdata)
     {
@@ -889,7 +902,7 @@ class Client
      * @param boolean $sendLogoutCMD Whether to send LOGOUT command before
      *                               disconnecting.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      */
     protected function _cmdLogout($sendLogoutCMD = true)
     {
@@ -904,7 +917,7 @@ class Client
     /**
      * Sends the CAPABILITY command
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      */
     protected function _cmdCapability()
     {
@@ -922,14 +935,14 @@ class Client
     protected function _parseCapability($data)
     {
         // Clear the cached capabilities.
-        $this->_capability = array(
-            'sasl' => array(),
-            'extensions' => array()
-        );
+        $this->_capability = [
+            'sasl' => [],
+            'extensions' => [],
+        ];
 
         $data = preg_split(
             '/\r?\n/',
-            \Horde_String::upper($data),
+            Horde_String::upper($data),
             -1,
             PREG_SPLIT_NO_EMPTY
         );
@@ -939,21 +952,21 @@ class Client
                 continue;
             }
             switch ($matches[1]) {
-            case 'IMPLEMENTATION':
-                $this->_capability['implementation'] = $matches[3];
-                break;
+                case 'IMPLEMENTATION':
+                    $this->_capability['implementation'] = $matches[3];
+                    break;
 
-            case 'SASL':
-                $this->_capability['sasl'] = preg_split('/\s+/', $matches[3]);
-                break;
+                case 'SASL':
+                    $this->_capability['sasl'] = preg_split('/\s+/', $matches[3]);
+                    break;
 
-            case 'SIEVE':
-                $this->_capability['extensions'] = preg_split('/\s+/', $matches[3]);
-                break;
+                case 'SIEVE':
+                    $this->_capability['extensions'] = preg_split('/\s+/', $matches[3]);
+                    break;
 
-            case 'STARTTLS':
-                $this->_capability['starttls'] = true;
-                break;
+                case 'STARTTLS':
+                    $this->_capability['starttls'] = true;
+                    break;
             }
         }
     }
@@ -1035,7 +1048,7 @@ class Client
      * @param string $cmd   The command to send.
      * @param boolean $auth Whether this is an authentication command.
      *
-     * @throws \Horde\ManageSieve\Exception if a NO response.
+     * @throws Exception if a NO response.
      * @return string  Reponse string if an OK response.
      *
      */
@@ -1058,11 +1071,13 @@ class Client
                     if (preg_match('/{([0-9]+)\+?}$/', $line, $matches)) {
                         $line = substr($line, 0, -(strlen($matches[1]) + 2))
                             . str_replace(
-                                "\r\n", ' ', $this->_recvBytes($matches[1] + 2)
+                                "\r\n",
+                                ' ',
+                                $this->_recvBytes($matches[1] + 2)
                             );
                     }
 
-                    if ('OK' == \Horde_String::upper($tag[1])) {
+                    if ('OK' == Horde_String::upper($tag[1])) {
                         $response .= $line;
                         return rtrim($response);
                     }
@@ -1086,7 +1101,8 @@ class Client
                         // Replace the old host with the referral host
                         // preserving any protocol prefix.
                         $this->_params['host'] = preg_replace(
-                            '/\w+(?!(\w|\:\/\/)).*/', $matches[2],
+                            '/\w+(?!(\w|\:\/\/)).*/',
+                            $matches[2],
                             $this->_params['host']
                         );
                         try {
@@ -1136,7 +1152,7 @@ class Client
      *
      * @param string $authmethod Only consider this method as available.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      * @return string  The name of the best supported authentication method.
      */
     protected function _getBestAuthMethod($authmethod = null)
@@ -1183,7 +1199,7 @@ class Client
     /**
      * Asserts that the client is in disconnected state.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      */
     protected function _checkConnected()
     {
@@ -1195,7 +1211,7 @@ class Client
     /**
      * Asserts that the client is in authenticated state.
      *
-     * @throws \Horde\ManageSieve\Exception
+     * @throws Exception
      */
     protected function _checkAuthenticated()
     {

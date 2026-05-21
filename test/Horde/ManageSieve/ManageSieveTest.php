@@ -1,7 +1,8 @@
 <?php
+
 /**
- * Copyright 2006 Anish Mistry
- * Copyright 2009-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2006-2026 Anish Mistry
+ * Copyright 2009-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (BSD). If you
  * did not receive this file, see http://www.horde.org/licenses/bsd.
@@ -11,7 +12,9 @@
  * @author    Jan Schneider <jan@horde.org>
  * @license   http://www.horde.org/licenses/bsd BSD
  */
+
 namespace Horde\ManageSieve;
+
 use Horde_Test_Case;
 
 /**
@@ -23,6 +26,7 @@ use Horde_Test_Case;
  * @copyright 2006 Anish Mistry
  * @copyright 2009-2017 Horde LLC
  * @license   http://www.horde.org/licenses/bsd BSD
+ * @coversNothing
  */
 class ManageSieveTest extends Horde_Test_Case
 {
@@ -60,19 +64,19 @@ class ManageSieveTest extends Horde_Test_Case
         $this->fixture = new ManageSieve();
         $logger = new Horde_Log_Logger(new Horde_Log_Handler_Cli());
         //$this->fixture->setLogger($logger);
-        $this->scripts = array(
+        $this->scripts = [
             'test script1' => "require \"fileinto\";\r\nif header :contains \"From\" \"@cnba.uba.ar\" \r\n{fileinto \"INBOX.Test1\";}\r\nelse \r\n{fileinto \"INBOX\";}",
             'test script2' => "require \"fileinto\";\r\nif header :contains \"From\" \"@cnba.uba.ar\" \r\n{fileinto \"INBOX.Test\";}\r\nelse \r\n{fileinto \"INBOX\";}",
             'test"scriptäöü3' => "require \"vacation\";\nvacation\n:days 7\n:addresses [\"matthew@de-construct.com\"]\n:subject \"This is a test\"\n\"I'm on my holiday!\nsadfafs\";",
-            'test script4' => file_get_contents(dirname(__FILE__) . '/largescript.siv'));
+            'test script4' => file_get_contents(dirname(__FILE__) . '/largescript.siv')];
     }
-    
+
     protected function tearDown(): void
     {
         // Delete the instance.
         unset($this->fixture);
     }
-    
+
     protected function login()
     {
         $this->fixture->connect($this->config['host'], $this->config['port']);
@@ -123,7 +127,7 @@ class ManageSieveTest extends Horde_Test_Case
     {
         $this->fixture->connect($this->config['host'], $this->config['port']);
     }
-    
+
     public function testLogin()
     {
         $this->fixture->connect($this->config['host'], $this->config['port']);
