@@ -63,6 +63,18 @@
     Merge pull request #2 from nextcloud/fix/dynamic-client-capability-property
     fix: Declare otherwise dynamic property Client::_capability
     Development mode for ManageSieve-2.0.0alpha6
+2.0.0-RC2:
+  api: 2.0.0-RC2
+  state:
+    release: RC
+    api: RC
+  date: 2026-05-21
+  license:
+    identifier: BSD-2-Clause
+    uri: https://spdx.org/licenses/BSD-2-Clause.html
+  notes: |-
+    style: php-cs-fixer, copyright dates
+    feat(auth): add XOAUTH2 authentication support
 2.0.0-RC1:
   api: 2.0.0-RC1
   state:
