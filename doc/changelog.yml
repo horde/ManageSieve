@@ -1,68 +1,14 @@
 ---
-2.0.0alpha6:
+2.0.0:
   api: 2.0.0
   state:
-    release: alpha
-    api: alpha
-  date: 2022-08-01
-  license:
-    identifier: BSD-2-Clause
-    uri: http://www.horde.org/licenses/bsd
-  notes: |+
-2.0.0alpha5:
-  api: 2.0.0
-  state:
-    release: alpha
-    api: alpha
-  date: 2022-08-01
-  license:
-    identifier: BSD-2-Clause
-    uri: http://www.horde.org/licenses/bsd
-  notes: |+
-2.0.0alpha4:
-  api: 2.0.0
-  state:
-    release: alpha
-    api: alpha
-  date: 2021-03-13
-  license:
-    identifier: BSD-2-Clause
-    uri: http://www.horde.org/licenses/bsd
-  notes: |+
-2.0.0alpha3:
-  api: 2.0.0
-  state:
-    release: alpha
-    api: alpha
-  date: 2021-03-13
-  license:
-    identifier: BSD-2-Clause
-    uri: http://www.horde.org/licenses/bsd
-  notes: |
-2.0.0-alpha8:
-  api: 2.0.0-alpha8
-  state:
-    release: alpha
-    api: alpha
-  date: 2026-04-14
+    release: stable
+    api: stable
+  date: 2026-06-26
   license:
     identifier: BSD-2-Clause
     uri: https://spdx.org/licenses/BSD-2-Clause.html
-  notes: |-
-    fix: Missing assignment in md5
-2.0.0-alpha7:
-  api: 2.0.0-alpha7
-  state:
-    release: alpha
-    api: alpha
-  date: 2026-03-07
-  license:
-    identifier: BSD-2-Clause
-    uri: https://spdx.org/licenses/BSD-2-Clause.html
-  notes: |-
-    Merge pull request #2 from nextcloud/fix/dynamic-client-capability-property
-    fix: Declare otherwise dynamic property Client::_capability
-    Development mode for ManageSieve-2.0.0alpha6
+  notes: 'chore: Update workflow dependency'
 2.0.0-RC2:
   api: 2.0.0-RC2
   state:
@@ -72,9 +18,7 @@
   license:
     identifier: BSD-2-Clause
     uri: https://spdx.org/licenses/BSD-2-Clause.html
-  notes: |-
-    style: php-cs-fixer, copyright dates
-    feat(auth): add XOAUTH2 authentication support
+  notes: "style: php-cs-fixer, copyright dates\nfeat(auth): add XOAUTH2 authentication support"
 2.0.0-RC1:
   api: 2.0.0-RC1
   state:
@@ -84,8 +28,67 @@
   license:
     identifier: BSD-2-Clause
     uri: https://spdx.org/licenses/BSD-2-Clause.html
-  notes: |-
-    fix: Crash on failed socket read
+  notes: 'fix: Crash on failed socket read'
+2.0.0-alpha8:
+  api: 2.0.0-alpha8
+  state:
+    release: alpha
+    api: alpha
+  date: 2026-04-14
+  license:
+    identifier: BSD-2-Clause
+    uri: https://spdx.org/licenses/BSD-2-Clause.html
+  notes: 'fix: Missing assignment in md5'
+2.0.0-alpha7:
+  api: 2.0.0-alpha7
+  state:
+    release: alpha
+    api: alpha
+  date: 2026-03-07
+  license:
+    identifier: BSD-2-Clause
+    uri: https://spdx.org/licenses/BSD-2-Clause.html
+  notes: "Merge pull request #2 from nextcloud/fix/dynamic-client-capability-property\nfix: Declare otherwise dynamic property Client::_capability\nDevelopment mode for ManageSieve-2.0.0alpha6"
+2.0.0alpha6:
+  api: 2.0.0
+  state:
+    release: alpha
+    api: alpha
+  date: 2022-08-01
+  license:
+    identifier: BSD-2-Clause
+    uri: http://www.horde.org/licenses/bsd
+  notes: ''
+2.0.0alpha5:
+  api: 2.0.0
+  state:
+    release: alpha
+    api: alpha
+  date: 2022-08-01
+  license:
+    identifier: BSD-2-Clause
+    uri: http://www.horde.org/licenses/bsd
+  notes: ''
+2.0.0alpha4:
+  api: 2.0.0
+  state:
+    release: alpha
+    api: alpha
+  date: 2021-03-13
+  license:
+    identifier: BSD-2-Clause
+    uri: http://www.horde.org/licenses/bsd
+  notes: ''
+2.0.0alpha3:
+  api: 2.0.0
+  state:
+    release: alpha
+    api: alpha
+  date: 2021-03-13
+  license:
+    identifier: BSD-2-Clause
+    uri: http://www.horde.org/licenses/bsd
+  notes: ''
 1.0.4:
   api: 1.0.0
   state:
@@ -95,7 +98,7 @@
   license:
     identifier: BSD-2-Clause
     uri: http://www.horde.org/licenses/bsd
-  notes: |+
+  notes: ''
 1.0.3:
   api: 1.0.0
   state:
@@ -105,8 +108,7 @@
   license:
     identifier: BSD-2-Clause
     uri: http://www.horde.org/licenses/bsd
-  notes: |
-    [jan] Fix passing 'context' parameter to connect() method (Daniel Kesselberg <mail@danielkesselberg.de>, PR #1).
+  notes: "[jan] Fix passing 'context' parameter to connect() method (Daniel Kesselberg <mail@danielkesselberg.de>, PR #1).\n"
 1.0.2:
   api: 1.0.0
   state:
@@ -116,8 +118,7 @@
   license:
     identifier: BSD-2-Clause
     uri: http://www.horde.org/licenses/bsd
-  notes: |
-    [jan] Fix loading of Auth_SASL class (Ralf Becker <RalfBecker@outdoor-training.de>).
+  notes: "[jan] Fix loading of Auth_SASL class (Ralf Becker <RalfBecker@outdoor-training.de>).\n"
 1.0.1:
   api: 1.0.0
   state:
@@ -127,22 +128,7 @@
   license:
     identifier: BSD-2-Clause
     uri: http://www.horde.org/licenses/bsd
-  notes: |
-    [jan] Fix usage of 'tlsv1' connection setting (Ralf Becker <RalfBecker@outdoor-training.de>).
-    [jan] Fix setting authentication credentials from login() (Ralf Becker <RalfBecker@outdoor-training.de>).
-    [jan] Fix throwing exceptions (Ralf Becker <RalfBecker@outdoor-training.de>).
-    [jan] Mark PHP 7 as supported.
-1.0.0alpha1:
-  api: 1.0.0alpha1
-  state:
-    release: alpha
-    api: alpha
-  date: 2015-07-31
-  license:
-    identifier: BSD-2-Clause
-    uri: http://www.horde.org/licenses/bsd
-  notes: |
-    Initial release.
+  notes: "[jan] Fix usage of 'tlsv1' connection setting (Ralf Becker <RalfBecker@outdoor-training.de>).\n[jan] Fix setting authentication credentials from login() (Ralf Becker <RalfBecker@outdoor-training.de>).\n[jan] Fix throwing exceptions (Ralf Becker <RalfBecker@outdoor-training.de>).\n[jan] Mark PHP 7 as supported.\n"
 1.0.0:
   api: 1.0.0
   state:
@@ -152,5 +138,14 @@
   license:
     identifier: BSD-2-Clause
     uri: http://www.horde.org/licenses/bsd
-  notes: |
-    Initial stable release.
+  notes: "Initial stable release.\n"
+1.0.0alpha1:
+  api: 1.0.0alpha1
+  state:
+    release: alpha
+    api: alpha
+  date: 2015-07-31
+  license:
+    identifier: BSD-2-Clause
+    uri: http://www.horde.org/licenses/bsd
+  notes: "Initial release.\n"

@@ -6,17 +6,16 @@ description: A library that implements the ManageSieve protocol (RFC 5804).
 list: dev
 type: library
 authors:
-  -
-    name: Jan Schneider
+  - name: Jan Schneider
     user: jan
     email: jan@horde.org
     active: true
     role: lead
 version:
-  release: 2.0.0-RC2
+  release: 2.0.0
   api: 2.0.0alpha1
 state:
-  release: RC
+  release: stable
   api: alpha
 license:
   identifier: BSD-2-Clause
